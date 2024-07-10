@@ -20,14 +20,14 @@ while True:
     if results.multi_hand_landmarks:
         for handLms in results.multi_hand_landmarks:
             for id, lm in enumerate(handLms.landmark):
-                # print(id, lm)
+                # print(id, lm) prints the location of all ids in the terminal every second
                 h, w, c = img.shape
                 cx, cy = int(lm.x * w), int(lm.y * h)
                 print(id, cx, cy)
-                # if id == 4:
+                # if id == 4: This specifies the landmark to get only that value 
                 cv2.circle(img, (cx, cy), 15, (255, 0, 255), cv2.FILLED)
 
-            mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)
+            mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS) #Draw connections between all the points
 
     cTime = time.time()
     fps = 1 / (cTime - pTime)
